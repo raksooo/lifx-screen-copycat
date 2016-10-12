@@ -1,0 +1,27 @@
+{
+  "name": "lifx-screen-copycat",
+  "version": "1.0.0",
+  "description": "Application which retrievs the current main color on the screen and sets it the color of lifx bulbs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raksooo/lifx-screen-copycat.git"
+  },
+  "keywords": [
+    "lifx",
+    "screen",
+    "screenshot",
+    "color",
+    "tv",
+    "movie"
+  ],
+  "author": "Oskar Nyberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raksooo/lifx-screen-copycat/issues"
+  },
+  "homepage": "https://github.com/raksooo/lifx-screen-copycat#readme"
+}
