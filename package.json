@@ -23,5 +23,12 @@
   "bugs": {
     "url": "https://github.com/raksooo/lifx-screen-copycat/issues"
   },
-  "homepage": "https://github.com/raksooo/lifx-screen-copycat#readme"
+  "homepage": "https://github.com/raksooo/lifx-screen-copycat#readme",
+  "dependencies": {
+    "color-thief": "^2.2.2",
+    "desktop-screenshot": "^0.1.1",
+    "node-lifx": "^0.6.0",
+    "node-screenshot": "^0.1.1",
+    "onecolor": "^3.0.4"
+  }
 }
