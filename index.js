@@ -40,8 +40,6 @@ class Copycat {
 
     colorBulb(color) {
     }
-
-
 }
 
 let copycat = new Copycat();
