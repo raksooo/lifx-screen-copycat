@@ -12,13 +12,35 @@ class Copycat {
     init() {
         return new Promise((resolve, reject) => {
             this.lifx.on('light-new', light => {
-                console.log('light discovered')
                 this.light = light;
                 resolve();
             });
             this.lifx.init();
 
         });
+    }
+
+    run_once() {
+        return new Promise((resolve, reject) => {
+            if (!this.light) {
+                reject();
+            } else {
+                this.takeScreenshot()
+                    .then(this.getColor.bind(this))
+                    .then(this.colorBulb.bind(this))
+                    .then(resolve);
+            }
+        });
+    }
+
+    loop(delay) {
+        setTimeout(() => {
+            this.run_once()
+                .then(this.loop.bind(this, delay))
+                .catch(() => {
+                    console.log('Have you called init?');
+                });
+        }, delay);
     }
 
     takeScreenshot() {
@@ -32,19 +54,18 @@ class Copycat {
 
     getColor(name) {
         return new Promise((resolve, reject) => {
-            let rgb = colorThief.getColor(name);
+            let rgb = this.colorThief.getColor(name);
             let col = color('rgb(' + rgb[0] + ', ' + rgb[1] + ', ' + rgb[2] + ')');
             resolve(col.hsl());
         });
     }
 
     colorBulb(color) {
+        this.light.color(color.hue() * 360, color.saturation() * 100, color.lightness() * 100);
     }
 }
 
 let copycat = new Copycat();
 copycat.init()
-    .then(copycat.takeScreenshot)
-    .then(copycat.getColor)
-    .then(console.log.bind(console));
+    .then(copycat.loop.bind(copycat));
 
